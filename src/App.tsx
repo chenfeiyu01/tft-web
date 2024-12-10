@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Board } from '@/components/Board';
+import { TraitPanel } from '@/components/TraitPanel';
 import { ChampionState, Position } from '@/models/types';
+import styles from './App.module.scss';
 
 function App() {
   // 测试用的棋子数据
@@ -56,8 +58,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      {/* <h1>云顶之弈</h1> */}
+    <div className={styles.app}>
+      <TraitPanel champions={champions} />
       <Board 
         champions={champions}
         onDrop={handleDrop}

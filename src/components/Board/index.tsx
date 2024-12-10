@@ -1,6 +1,7 @@
 import React from 'react';
-import { ChampionState, Position } from '@models/types';
+import { ChampionState, Position } from '@/constants/types';
 import styles from './index.module.scss';
+import { BOARD } from '@/constants/game';
 
 interface BoardProps {
   champions: ChampionState[];
@@ -9,9 +10,6 @@ interface BoardProps {
 }
 
 export const Board: React.FC<BoardProps> = ({ champions, onDrop, onChampionClick }) => {
-  const rows = 8;
-  const cols = 7;
-
   const renderCell = (position: Position) => {
     const champion = champions.find(
       c => c.position.x === position.x && c.position.y === position.y
@@ -51,9 +49,15 @@ export const Board: React.FC<BoardProps> = ({ champions, onDrop, onChampionClick
 
   return (
     <div className={styles.board}>
-      {Array.from({ length: rows }).map((_, row) => (
-        <div key={row} className={`${styles.row} ${row % 2 === 1 ? styles.rowOffset : ''}`}>
-          {Array.from({ length: cols }).map((_, col) => renderCell({ x: col, y: row }))}
+      {Array.from({ length: BOARD.ROWS }).map((_, row) => (
+        <div 
+          key={row} 
+          className={`${styles.row} ${row % 2 === 1 ? styles.rowOffset : ''}`}
+          style={{ marginLeft: row % 2 === 1 ? BOARD.ROW_OFFSET : 0 }}
+        >
+          {Array.from({ length: BOARD.COLS }).map((_, col) => 
+            renderCell({ x: col, y: row })
+          )}
         </div>
       ))}
     </div>

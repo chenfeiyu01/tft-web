@@ -12,7 +12,7 @@
 
 .row {
   display: flex;
-  gap: 4px;
+  gap: #{$BOARD_CELL_GAP}px;
   margin-bottom: -14px;
   
   &.rowOffset {
@@ -21,8 +21,8 @@
 }
 
 .cell {
-  width: 68px;
-  height: 78px;
+  width: #{$BOARD_CELL_SIZE}px;
+  height: #{$BOARD_CELL_SIZE * 1.15}px;
   position: relative;
   margin: 0 1px;
 }

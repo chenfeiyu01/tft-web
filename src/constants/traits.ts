@@ -1,17 +1,4 @@
-import { ChampionStats } from "@/models/types";
-
-export interface TraitEffect {
-  requiredCount: number;
-  description: string;
-  stats: Partial<ChampionStats>;
-}
-
-export interface Trait {
-  id: string;
-  name: string;
-  description: string;
-  effects: TraitEffect[];
-}
+import { Trait } from './types';
 
 export const traits: Trait[] = [
   {

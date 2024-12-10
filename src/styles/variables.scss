@@ -12,4 +12,14 @@ $spacing-large: 24px;
 $font-family-base: 'Arial', sans-serif;
 $font-size-base: 14px;
 
+// 羁绊等级颜色
+$bronze: #cd7f32;
+$silver: #c0c0c0;
+$gold: #ffd700;
+
+// 棋盘变量
+$BOARD_CELL_SIZE: 68;
+$BOARD_CELL_GAP: 4;
+$BOARD_ROW_OFFSET: 34;
+
 // @forward './_variables';

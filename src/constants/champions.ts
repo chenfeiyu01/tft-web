@@ -1,17 +1,4 @@
-import { ChampionStats } from '../models/types';
-
-export interface ChampionData {
-  id: string;
-  name: string;
-  cost: number;
-  traits: string[];
-  baseStats: ChampionStats;
-  ability: {
-    name: string;
-    description: string;
-    manaCost: number;
-  };
-}
+import { ChampionData } from './types';
 
 export const champions: ChampionData[] = [
   {
