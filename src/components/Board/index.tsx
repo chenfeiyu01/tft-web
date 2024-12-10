@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChampionState, Position } from '@models/types';
-import styles from './index.m.scss';
+import styles from './index.module.scss';
 
 interface BoardProps {
   champions: ChampionState[];
@@ -9,7 +9,7 @@ interface BoardProps {
 }
 
 export const Board: React.FC<BoardProps> = ({ champions, onDrop, onChampionClick }) => {
-  const rows = 4;
+  const rows = 8;
   const cols = 7;
 
   const renderCell = (position: Position) => {
@@ -24,20 +24,22 @@ export const Board: React.FC<BoardProps> = ({ champions, onDrop, onChampionClick
         onDrop={(e) => handleDrop(e, position)}
         onDragOver={(e) => e.preventDefault()}
       >
-        {champion && (
-          <div 
-            className={styles.champion}
-            onClick={() => onChampionClick?.(champion)}
-          >
-            <div className={styles.championName}>{champion.name}</div>
-            <div className={styles.healthBar}>
-              <div 
-                className={styles.healthFill}
-                style={{ width: `${(champion.health / champion.maxHealth) * 100}%` }}
-              />
+        <div className={styles.hexagon}>
+          {champion && (
+            <div 
+              className={styles.champion}
+              onClick={() => onChampionClick?.(champion)}
+            >
+              <div className={styles.championName}>{champion.name}</div>
+              <div className={styles.healthBar}>
+                <div 
+                  className={styles.healthFill}
+                  style={{ width: `${(champion.health / champion.maxHealth) * 100}%` }}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   };
@@ -50,7 +52,7 @@ export const Board: React.FC<BoardProps> = ({ champions, onDrop, onChampionClick
   return (
     <div className={styles.board}>
       {Array.from({ length: rows }).map((_, row) => (
-        <div key={row} className={styles.row}>
+        <div key={row} className={`${styles.row} ${row % 2 === 1 ? styles.rowOffset : ''}`}>
           {Array.from({ length: cols }).map((_, col) => renderCell({ x: col, y: row }))}
         </div>
       ))}
